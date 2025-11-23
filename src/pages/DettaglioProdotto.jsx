@@ -18,7 +18,7 @@ export default function DettaglioProdotto() {
           navigate("/prodotti");
         } else {
           setDettagli(resp.data);
-          setDataFound(true)
+          setDataFound(true);
         }
       })
       .catch((error) => {
@@ -40,26 +40,39 @@ export default function DettaglioProdotto() {
         </div>
       )}
 
-      {dataFound === true && 
+      {dataFound === true && (
         <>
-      <Link
-        className="btn btn-outline-secondary btn-sm mx-3"
-        onClick={() => navigate(-1)}
-      >
-        ◄ Torna ai prodotti
-      </Link>
-      <div className="container text-center my-5">
-        <h2 className="my-5">
-          {dettagli.title}
-          <span className="badge text-bg-secondary">{dettagli.category}</span>
-        </h2>
-        <img src={dettagli.image} alt="" />
-        <h3 className="my-3">${dettagli.price}</h3>
-        <p className="my-3">{dettagli.description}</p>
-        {/* <p className="my-3 text-warning">Voto dei clienti: {dettagli.rating.rate}/5</p> */}
-      </div>
+          <button
+            className="btn btn-outline-secondary btn-sm mx-3"
+            onClick={() => navigate("/prodotti")}
+          >
+            ◄ Torna ai prodotti
+          </button>
+          <div className="container text-center my-5">
+            <h2 className="my-1">
+              {dettagli.title}
+            </h2>
+            <span className="badge rounded-pill text-bg-secondary mb-5">{dettagli.category}</span>
+            <br />
+            <img src={dettagli.image} alt="" style={{height: "300px"}}/>
+            <h3 className="my-3">${dettagli.price.toFixed(2)}</h3>
+            <p className="mb-5">{dettagli.description}</p>
+            {/* <p className="my-3 text-warning">Voto dei clienti: {dettagli.rating.rate}/5</p> */}
+            <Link 
+            className={`btn btn-outline-secondary mx-3 ${id <= 1 ? 'disabled' : ''}`}
+            to={"/dettaglio-prodotto/" + (parseInt(id) - 1)}
+            >
+              Prodotto precedente
+            </Link>
+            <Link
+            className={`btn btn-dark mx-3 }`}
+              to={"/dettaglio-prodotto/" + (parseInt(id) + 1)} 
+            >
+              Prodotto successivo
+            </Link> 
+          </div>
         </>
-      }    
+      )}
     </>
   );
 }

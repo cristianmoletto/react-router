@@ -16,16 +16,11 @@ export default function Navbar() {
         }}
       >
         <div className="container-sm">
-          <NavLink className="navbar-brand" to="">
-            Navbar
+          <NavLink className="navbar-brand" to="/">
+            Home
           </NavLink>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li>
-                <NavLink className="nav-link" to="/">
-                  Home
-                </NavLink>
-              </li>
               <li>
                 <NavLink className="nav-link" to="/chi-siamo">
                   Chi Siamo
