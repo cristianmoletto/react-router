@@ -9,24 +9,36 @@ export default function Prodotti() {
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
-      .then((resp) => 
-        setProdotti(resp.data));
+      .then((resp) => setProdotti(resp.data));
   }, []);
 
   return (
     <div className="container">
-      <div className="row-col text-center my-5">
+      <div className="row text-center my-5">
         <h1 className="my-5">Elenco Prodotti</h1>
-        <div className="col-4 text-center mx-auto">
         {prodotti.map((prodotto) => (
-        <Link className="text-decoration-none" key={prodotto.id}>
-          <div className="card my-4" >
-            <img src={prodotto.image} className="card-img" style={{height: '150px', objectFit:'cover',objectPosition: "top"}} alt=""/>
-            <div className="card-header">{prodotto.title}</div>
-            <div className="card-text">{prodotto.description}</div>
-          </div></Link>
+          <div className="col-10 col-md-6 col-lg-3 text-center mx-auto" key={prodotto.id}>
+            <Link
+              className="text-decoration-none"
+              to={"/dettaglio-prodotto/" + prodotto.id}
+            >
+              <div className="card my-4">
+                <img
+                  src={prodotto.image}
+                  className="card-img"
+                  style={{
+                    height: "150px",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                  }}
+                  alt=""
+                />
+                <div className="fw-bold p-3">{prodotto.title}</div>
+                <div className="card-text p-2">{prodotto.description.slice(0,80)}</div>
+              </div>
+            </Link>
+          </div>
         ))}
-        </div>
       </div>
     </div>
   );
